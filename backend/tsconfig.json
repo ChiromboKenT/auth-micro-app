@@ -120,6 +120,8 @@
       "@services/*" : ["src/services/*"],
       "@utils" : ["src/utils"],
       "@utils/*" : ["src/utils/*"],
+      "@repositories" : ["src/repositories"],
+      "@repositories/*" : ["src/repositories/*"],
     }
   }
 }
