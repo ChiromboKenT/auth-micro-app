@@ -12,8 +12,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
-    "migrate": "node-pg-migrate",
-    "prepare": "cd .. && husky install backend/.husky"
+    "migrate": "node-pg-migrate"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +29,6 @@
     "supertest": "^7.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
@@ -39,7 +37,11 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.14.10",
-    "@types/supertest": "^6.0.2"
+    "@types/supertest": "^6.0.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript-transform-paths": "^3.4.7"
   }
 }

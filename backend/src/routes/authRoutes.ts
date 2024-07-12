@@ -1,7 +1,8 @@
-import { signin, signup } from "@controllers/authController";
-import { requestValidator } from "@middlewares/requestValidator";
-import { signinSchema, signupSchema } from "@utils/validation";
+
 import express from "express";
+import { requestValidator } from "../middleware/requestValidator";
+import { signinSchema, signupSchema } from "../utils/validation";
+import { signin, signup } from "../controllers/authController";
 
 const router = express.Router();
 

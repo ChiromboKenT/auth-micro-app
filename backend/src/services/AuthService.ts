@@ -2,8 +2,9 @@ import bcrypt from "bcrypt";
 
 import {generateToken} from "../utils/jwt";
 import {AppError} from "../utils/appError";
-import { User, UserWithoutPassword } from "@models/UserModel";
-import { userRepository } from "@repositories/UserRepository";
+import { userRepository } from "../repositories/UserRepository";
+import { User, UserWithoutPassword } from "../models/UserModel";
+
 
 export class AuthService {
   async signup(

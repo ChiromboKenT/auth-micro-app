@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import authRoutes from "@routes/authRoutes";
-import { errorHandler } from "@middlewares/errorHandler";
-import { config } from "@config/config";
+import authRoutes from "./routes/authRoutes";
+import { errorHandler } from "./middleware/errorHandler";
+import { config } from "./config/config";
+
 
 
 

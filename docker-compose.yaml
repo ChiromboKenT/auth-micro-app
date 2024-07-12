@@ -1,7 +1,10 @@
 version: '3.8'
 services:
-  bavkend:
-    build: ./backend
+  backend:
+    build:
+      context: ./backend
+      args:
+        - API_PORT=${API_PORT}
     container_name: backend_container
     environment:
       - API_PORT=${API_PORT}

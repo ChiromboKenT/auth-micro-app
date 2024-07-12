@@ -1,4 +1,11 @@
 {
+  "ts-node": {
+   "transpileOnly": true,
+   "require": [  // set this so you dont need to use ts-node -r
+ 	"typescript-transform-paths/register",
+ 	"tsconfig-pa  ths/register"
+    ]
+  },
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
@@ -6,25 +13,9 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "outDir": "./dist",
     "baseUrl": "./",
-    "paths": {
-      "@config": ["src/config"],
-      "@config/*": ["src/config/*"],
-      "@controllers": ["src/controllers"],
-      "@controllers/*": ["src/controllers/*"],
-      "@middlewares": ["src/middleware"],
-      "@middlewares/*": ["src/middleware/*"],
-      "@models": ["src/models"],
-      "@models/*": ["src/models/*"],
-      "@routes": ["src/routes"],
-      "@routes/*": ["src/routes/*"],
-      "@services": ["src/services"],
-      "@services/*": ["src/services/*"],
-      "@utils": ["src/utils"],
-      "@utils/*": ["src/utils/*"],
-      "@repositories": ["src/repositories"],
-      "@repositories/*": ["src/repositories/*"]
-    }
+
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

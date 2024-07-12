@@ -1,6 +1,5 @@
-FROM node:18-alpine as builder
-
-WORKDIR /usr/src/app
+FROM node:18-alpine AS builder
+WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci
@@ -9,12 +8,12 @@ COPY . .
 RUN npm run build
 
 FROM node:18-alpine
+WORKDIR /app
 
-WORKDIR /usr/src/app
+RUN npm install bcrypt
 
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
 
-EXPOSE 5000
 
 CMD ["node", "dist/app.js"]

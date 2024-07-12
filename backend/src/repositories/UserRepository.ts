@@ -1,6 +1,6 @@
 import {RowDataPacket} from "mysql2";
 import pool from "../config/database";
-import { User } from "@models/UserModel";
+import { User } from "../models/UserModel";
 
 
 export class UserRepository {

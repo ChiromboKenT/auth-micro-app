@@ -17,11 +17,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
+    "husky": "^9.0.11",
     "joi": "^17.13.3",
-    "nodemon": "^3.1.4",
-    "tsconfig-paths": "^4.2.0"
+    "nodemon": "^3.1.4"
   }
 }
