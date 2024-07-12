@@ -2,10 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for simple auth app for interview",
-  "main": "index.js",
   "scripts": {
     "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon --exec \"ts-node -r tsconfig-paths/register\" src/app.ts",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
