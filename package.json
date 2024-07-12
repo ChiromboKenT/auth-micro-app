@@ -17,6 +17,10 @@
   "author": "Kenny Chirombo",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "joi": "^17.13.3"
   }
 }
