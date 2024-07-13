@@ -30,11 +30,11 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD:-authpassword}
     ports:
       - ${DB_PORT}:3306
-    command: --init-file=/docker-entrypoint-initdb.d/init.sql  # Execute the script on startup
+    command: --init-file=/docker-entrypoint-initdb.d/init.sql
     volumes:
-      - ./backend/migrations:/docker-entrypoint-initdb.d  # Mount migrations directory
-      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount the initialization SQL script
-      - mysql-data:/var/lib/mysql  # MySQL data volume
+      - ./backend/migrations:/docker-entrypoint-initdb.d
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql-data:/var/lib/mysql
     networks:
       - app-network
 

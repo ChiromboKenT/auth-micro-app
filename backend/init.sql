@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS authb; -- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS authb;
 GRANT ALL PRIVILEGES ON authb.* TO 'myuser'@'%';
 FLUSH PRIVILEGES;
-
