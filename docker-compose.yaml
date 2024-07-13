@@ -32,7 +32,6 @@ services:
       - ${DB_PORT}:3306
     command: --init-file=/docker-entrypoint-initdb.d/init.sql
     volumes:
-      - ./backend/migrations:/docker-entrypoint-initdb.d
       - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
       - mysql-data:/var/lib/mysql
     networks:
