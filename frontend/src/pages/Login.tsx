@@ -1,5 +1,8 @@
+import React from "react";
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import {useNavigate, Link} from "react-router-dom";
 import {useSigninMutation} from "../services/api";
 import {useDispatch} from "react-redux";
 import {setCredentials} from "../features/auth/authSlice";
@@ -13,14 +16,31 @@ import {
   FormControl,
   FormMessage,
 } from "../components/ui/form";
+import {AuthRequest} from "../types/auth";
+
+// Define the validation schema using yup
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [signin] = useSigninMutation();
-  const form = useForm();
 
-  const onSubmit = async (data : any) => {
+  // Use the validation schema with react-hook-form
+  const form = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (data: AuthRequest) => {
     try {
       const result = await signin(data).unwrap();
       dispatch(setCredentials({token: result.token}));
@@ -43,7 +63,9 @@ const Login = () => {
                 <FormControl>
                   <Input type="email" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage>
+                  {form.formState.errors.email?.message}
+                </FormMessage>
               </FormItem>
             )}
           />
@@ -56,11 +78,24 @@ const Login = () => {
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage>
+                  {form.formState.errors.password?.message}
+                </FormMessage>
               </FormItem>
             )}
           />
-          <Button type="submit">Log in</Button>
+          <Button type="submit" className="w-full">
+            Log in
+          </Button>
+          <div className="text-center text-sm text-gray-500">
+            Don't have an account?{" "}
+            <Link
+              to="/signup"
+              className="font-semibold text-primary hover:underline"
+            >
+              Sign up instead
+            </Link>
+          </div>
         </form>
       </Form>
     </div>
