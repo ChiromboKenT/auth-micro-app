@@ -1,4 +1,4 @@
-import React from "react";
+import  {useState} from "react";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -17,8 +17,10 @@ import {
   FormMessage,
 } from "../components/ui/form";
 import {AuthRequest} from "../types/auth";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Define the validation schema using yup
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -35,6 +37,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const [signin] = useSigninMutation();
 
+  // State for loading indicator
+  const [loading, setLoading] = useState(false);
+
   // Use the validation schema with react-hook-form
   const form = useForm({
     resolver: yupResolver(schema),
@@ -42,11 +47,22 @@ const Login = () => {
 
   const onSubmit = async (data: AuthRequest) => {
     try {
+      setLoading(true); // Set loading state to true
       const result = await signin(data).unwrap();
       dispatch(setCredentials({token: result.token}));
       navigate("/home");
+      toast.success("Logged in successfully");
     } catch (err) {
       console.error("Failed to log in:", err);
+      toast.error(
+        `Failed to sign up: ${
+          (err as any)?.data?.error ||
+          (err as any)?.data?.message ||
+          (err as any)?.message
+        }`
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,8 +100,8 @@ const Login = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Log in
+          <Button type="submit" className="w-full" disabled={loading}>
+            {loading ? "Logging in..." : "Log in"}
           </Button>
           <div className="text-center text-sm text-gray-500">
             Don't have an account?{" "}
@@ -98,6 +114,7 @@ const Login = () => {
           </div>
         </form>
       </Form>
+      <ToastContainer position="bottom-right" />{" "}
     </div>
   );
 };

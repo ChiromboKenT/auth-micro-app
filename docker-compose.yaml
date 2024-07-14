@@ -20,6 +20,19 @@ services:
     networks:
       - app-network
 
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_container
+    environment:
+      - VITE_API_URL=http://backend:${API_PORT}
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
   mysql:
     image: mysql:latest
     container_name: mysql_container

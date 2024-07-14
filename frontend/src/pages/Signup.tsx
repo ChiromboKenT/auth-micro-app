@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import  {useState} from "react";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -17,6 +17,7 @@ import {
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {ClipLoader} from "react-spinners";
+import { AuthRequest } from "../types/auth";
 
 // Define the validation schema using yup
 const schema = yup.object().shape({
@@ -41,7 +42,7 @@ const Signup = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data : AuthRequest) => {
     setLoading(true);
     try {
       await signup(data).unwrap();
@@ -51,7 +52,9 @@ const Signup = () => {
       console.log(err);
       toast.error(
         `Failed to sign up: ${
-          err.data?.error || err.data?.message|| err.message
+          (err as any)?.data?.error ||
+          (err as any)?.data?.message ||
+          (err as any)?.message
         }`
       );
     } finally {
