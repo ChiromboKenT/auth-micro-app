@@ -10,7 +10,7 @@ export class UserRepository {
       [user.username, user.email, user.password]
     );
 
-    return result?.insertId;
+    return result?.insertId || 0;
   }
 
   async findUserByEmail(email: string): Promise<User | null> {
