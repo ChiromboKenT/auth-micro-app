@@ -9,7 +9,8 @@ export class UserRepository {
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [user.username, user.email, user.password]
     );
-    return result[0].insertId;
+
+    return result?.insertId;
   }
 
   async findUserByEmail(email: string): Promise<User | null> {
